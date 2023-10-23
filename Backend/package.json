@@ -1,12 +1,13 @@
 {
-  "name": "rent_spot_backend",
+  "name": "park_easy_backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon app.js",
     "start": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm i"
   },
   "author": "Harshadkumar Patel",
   "license": "ISC",
