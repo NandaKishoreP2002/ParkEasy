@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const { connectDB } = require("./config/db.config");
+//const { connectDB } = require("./config/db.config");
 const userRouter = require("./controllers/user");
 const handleError = require('./utils/errorHandler');
 const { isLoggedIn } = require("./controllers/middleware");
@@ -14,6 +14,11 @@ const reviewRouter = require("./controllers/review");
 const cityRouter =require("./controllers/city")
 const addressRouter =require("./controllers/address")
 
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config();
+const pass_word=process.env.password;
+
 // Set body-parser
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
@@ -22,8 +27,24 @@ const port = process.env.PORT || 5000;
 
 app.use(cors())
 
+
+const url = "mongodb+srv://nandupvt02:"+pass_word+"@parkeasy.rhkw5gi.mongodb.net/?retryWrites=true&w=majority"
+
+mongoose.connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+
+mongoose.connection.once("open", async () => {
+    console.log("Connected to database");
+});
+      
+mongoose.connection.on("error", (err) => {
+    console.log("Error connecting to database  ", err);
+});
+
 // Connect Database
-connectDB();
+//connectDB();
 
 
 app.get('/', isLoggedIn, async (req, res) => {
