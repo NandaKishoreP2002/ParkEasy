@@ -102,6 +102,7 @@ const Booking = () => {
 
     const handleDeleteBookingSuccess = () => {
         fetchBookings({ user_id: user?._id, setBookings })
+        navigate("/booking")
         setShowDeleteModal(false)
     }
 
